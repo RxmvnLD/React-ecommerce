@@ -18,6 +18,7 @@ hover:ease-out
 font-bold
 py-2
 px-4
+m-auto
 `;
 
 export default Button;
