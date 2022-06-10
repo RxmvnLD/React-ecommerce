@@ -111,6 +111,7 @@ md:hidden
 
 const CategoriesList = tw.ul`
 md:flex
+bg-blue-500
 md:items-center
 md:pb-0
 pb-12
@@ -123,7 +124,7 @@ md:w-auto
 md:pl-0
 pl-0
 transition-all
-duration-500
+duration-300
 ease-in 
 `;
 

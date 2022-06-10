@@ -25,10 +25,27 @@ const Account = () => {
       <NavBar />
       {state.success ? (
         <>
-          <MainContainer>
+          <Divider className="mb-10">
             <Title>Mi cuenta</Title>
-            <p>!Bienvenido, {state.user.name}!</p>
+            <p className="mb-1 text-lg text-center sm:text-2xl">
+              !Bienvenido, {state.user.name}!
+            </p>
             <Button text="Cerrar sesión" onClick={logoutHandler} />
+          </Divider>
+          <MainContainer>
+            <Divider>
+              <Title2>Mis compras:</Title2>
+              <p>No tienes compras</p>
+            </Divider>
+            <Divider>
+              <Title2>Dirección de envío:</Title2>
+              <p>Calle y número: </p>
+              <p>Colonia: </p>
+              <p>CP: </p>
+              <p>Ciudad: </p>
+              <p>Estado: </p>
+              <Button text="Editar dirección" />
+            </Divider>
           </MainContainer>
         </>
       ) : (
@@ -39,18 +56,32 @@ const Account = () => {
     </>
   );
 };
-const MainContainer = tw.main`
-mt-10
-md:text-xl
-flex
-flex-col
-items-center
-gap-3
-`;
 const Title = tw.h1`
+text-center
 text-xl
 md:text-3xl
 font-semibold
+mt-10
+`;
+const MainContainer = tw.main`
+md:text-lg
+flex
+flex-col
+md:flex-row
+md:justify-evenly
+items-center
+gap-10
+content-center
+`;
+const Title2 = tw.h3`
+font-semibold
+text-xl
+md:text-2xl`;
+
+const Divider = tw.div`
+flex
+flex-col
+gap-1
 `;
 
 export default Account;
