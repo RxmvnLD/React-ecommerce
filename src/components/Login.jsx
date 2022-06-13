@@ -57,7 +57,7 @@ const Login = () => {
         <p>
           ¿No tienes una cuenta?{" "}
           <Link
-            to="/register"
+            to="/signup"
             className="hover:font-bold hover:text-blue-700 hover:text-xl"
           >
             Crear una cuenta
@@ -70,7 +70,7 @@ const Login = () => {
 
 const MainContainer = tw.main`
 mt-40
-md:mt-56
+md:mt-44
 md:text-xl
 flex
 flex-col

@@ -63,7 +63,7 @@ const NavBar = () => {
           </CategoriesList>
         </NavContainer>
       </TopHeader>
-      <div className="bg-blue-500 h-14 sm:h-24"></div>
+      <div className="mb-10 bg-blue-500 h-14 sm:h-24"></div>
     </>
   );
 };

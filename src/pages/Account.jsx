@@ -61,7 +61,6 @@ text-center
 text-xl
 md:text-3xl
 font-semibold
-mt-10
 `;
 const MainContainer = tw.main`
 md:text-lg
