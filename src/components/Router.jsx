@@ -4,7 +4,8 @@ import Home from "../pages/Home";
 import NotFound from "../pages/NotFound";
 import Account from "../pages/Account";
 import ShoppingCart from "../pages/ShoppingCart";
-import Register from "../pages/Register";
+import SignUp from "../pages/SignUp";
+import ProductDetails from "../pages/ProductDetails";
 
 const Router = () => {
   return (
@@ -12,9 +13,10 @@ const Router = () => {
       <Routes>
         <Route path="*" element={<NotFound />} />
         <Route path="/" element={<Home />} />
-        <Route path="/register" element={<Register />} />
+        <Route path="/signup" element={<SignUp />} />
         <Route path="/account" element={<Account />} />
         <Route path="/shoppingcart" element={<ShoppingCart />} />
+        <Route path="/product" element={<ProductDetails />} />
       </Routes>
     </BrowserRouter>
   );

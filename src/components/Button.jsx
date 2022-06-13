@@ -19,6 +19,7 @@ font-bold
 py-2
 px-4
 m-auto
+rounded
 `;
 
 export default Button;
