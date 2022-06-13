@@ -3,7 +3,7 @@ import NavBar from "../components/NavBar";
 import tw from "twin.macro";
 import Button from "../components/Button";
 import Input from "../components/Input";
-import { axiosPost } from "../axiosInstance";
+import { axiosPost } from "../helpers/axiosInstance";
 import ErrorBox from "../components/ErrorBox";
 import { useNavigate } from "react-router-dom";
 import AuthContext from "../context/AuthContext";

@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { axiosPost } from "../axiosInstance";
+import { axiosPost } from "../helpers/axiosInstance";
 import tw from "twin.macro";
 import { useNavigate } from "react-router-dom";
 import AuthContext from "../context/AuthContext";

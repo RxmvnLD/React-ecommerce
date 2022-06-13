@@ -1,6 +1,6 @@
 import React, { createContext, useReducer, useEffect } from "react";
 import { authReducer, authInitialState } from "../reducers/auth.reducer";
-import { axiosGet } from "../axiosInstance";
+import { axiosGet } from "../helpers/axiosInstance";
 
 const AuthContext = createContext();
 

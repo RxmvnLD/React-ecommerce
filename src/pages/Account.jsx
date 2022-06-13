@@ -5,7 +5,7 @@ import Login from "../components/Login";
 import Button from "../components/Button";
 import { useNavigate } from "react-router-dom";
 import tw from "twin.macro";
-import { axiosGet } from "../axiosInstance";
+import { axiosGet } from "../helpers/axiosInstance";
 
 const Account = () => {
   const navigate = useNavigate();
