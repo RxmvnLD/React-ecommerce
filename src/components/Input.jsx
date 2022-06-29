@@ -1,8 +1,15 @@
 import React from "react";
 import tw from "twin.macro";
 
-const Input = ({ type, name, inputPlaceholder }) => {
-  return <CustomInput type={type} name={name} placeholder={inputPlaceholder} />;
+const Input = ({ type, name, inputPlaceholder, required }) => {
+  return (
+    <CustomInput
+      type={type}
+      required={required}
+      name={name}
+      placeholder={inputPlaceholder}
+    />
+  );
 };
 
 const CustomInput = tw.input`

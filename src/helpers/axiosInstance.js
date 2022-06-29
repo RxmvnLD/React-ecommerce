@@ -10,9 +10,6 @@ export const getToken = () => {
 
 const axiosInstance = axios.create({
   baseURL: "https://backendnodejstzuzulcode.uw.r.appspot.com/api",
-  headers: {
-    "Content-type": "application/json; charset=utf-8",
-  },
   withCredentials: true,
 });
 
