@@ -15,6 +15,7 @@ const Login = () => {
   });
   const { dispatch } = useContext(AuthContext);
   const navigate = useNavigate();
+
   const login = async (event) => {
     event.preventDefault();
     const { email, password } = event.target;
