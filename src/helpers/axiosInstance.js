@@ -1,5 +1,6 @@
 /* eslint-disable no-throw-literal */
 import axios from "axios";
+import { baseURL } from "../config/index.js";
 
 export const getToken = () => {
   const storedToken = window.localStorage.getItem("token");
@@ -9,7 +10,7 @@ export const getToken = () => {
 };
 
 const axiosInstance = axios.create({
-  baseURL: "https://backendnodejstzuzulcode.uw.r.appspot.com/api",
+  baseURL: baseURL,
   withCredentials: true,
 });
 
@@ -32,9 +33,18 @@ export const axiosGet = async (url) => {
   }
 };
 
-export const axiosPut = async (url) => {
+export const axiosPut = async (url, data) => {
   try {
-    const res = await axiosInstance.put(url);
+    const res = await axiosInstance.put(url, data);
+    return res.data;
+  } catch (error) {
+    throw error.response;
+  }
+};
+
+export const axiosDel = async (url, data) => {
+  try {
+    const res = await axiosInstance.delete(url, { data });
     return res.data;
   } catch (error) {
     throw error.response;

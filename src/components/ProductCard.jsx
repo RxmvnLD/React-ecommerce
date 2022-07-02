@@ -1,23 +1,29 @@
-import React from "react";
+import React, { useContext } from "react";
 import tw from "twin.macro";
 import Button from "./Button";
 import { FaCartPlus } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { axiosPost } from "../helpers/axiosInstance";
+import CartContext from "../context/CartContext";
 
 const ProductCard = ({ name, description, stock, price, image, id }) => {
   const defaultImage =
     "https://thumbs.dreamstime.com/b/corrupted-file-document-outline-icon-corrupted-file-document-outline-icon-linear-style-sign-mobile-concept-web-design-bad-116231507.jpg";
 
+  const { cartDispatch } = useContext(CartContext);
   const addToCart = async () => {
     const body = { idProduct: id, amount: 1 };
-    console.log(
-      "🚀 ~ file: ProductCard.jsx ~ line 20 ~ addToCart ~ body",
-      body
-    );
     try {
       const res = await axiosPost("/cart/add", body);
       console.log(res);
+      if (res) {
+        alert("producto agregado al carrito");
+        await cartDispatch({ type: "ADD", payload: res });
+        await cartDispatch({
+          type: "UPDATE_AMOUNT",
+          payload: res[res.length - 1].price * res[res.length - 1].amount,
+        });
+      }
     } catch (error) {
       console.log(error);
     }
@@ -25,13 +31,14 @@ const ProductCard = ({ name, description, stock, price, image, id }) => {
 
   return (
     <>
-      {console.log(id)}
       <ProductContainer>
         <Link
           className="flex flex-col items-center gap-2"
           to={`/product/${id}`}
         >
-          <ProductImage src={image || defaultImage} />
+          <div className="w-32 h-20 m-auto lg:w-60 md:h-60">
+            <ProductImage src={image || defaultImage} />
+          </div>
           <ProductTitle>{name}</ProductTitle>
         </Link>
         <ProductDescription>
@@ -76,9 +83,10 @@ rounded-2xl
 
 const ProductImage = tw.img`
 scale-50
-max-w-sm
-max-h-60
+max-w-full
+max-h-full
 rounded-lg
+m-auto
 `;
 
 const ProductTitle = tw.h1`
