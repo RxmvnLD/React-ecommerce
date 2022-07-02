@@ -1,11 +1,12 @@
 import React, { useState, useContext, useEffect } from "react";
-//import AuthContext from "../context/AuthContext";
 import NavBar from "../components/NavBar";
 import ProductCard from "../components/ProductCard";
 import tw from "twin.macro";
 import { axiosGet } from "../helpers/axiosInstance";
 import CartContext from "../context/CartContext";
 import Loader from "../components/Loader";
+import { Pagination } from "flowbite-react";
+
 const Home = () => {
   const { cartState } = useContext(CartContext);
   useEffect(() => {
@@ -14,10 +15,9 @@ const Home = () => {
 
   const [products, setProducts] = useState([]),
     [loader, setLoader] = useState(true);
-
+  const onPageChange = () => {};
   const getProducts = async () => {
     try {
-      //const res = await axiosGet("/products/62ba0d30b96a7de3835aeebb"),
       const res = await axiosGet("/products"),
         json = await res.data;
       await setProducts(json);
@@ -51,6 +51,13 @@ const Home = () => {
           })}
         </ProductsContainer>
       )}
+      <div className="items-center justify-center text-center ">
+        <Pagination
+          currentPage={1}
+          totalPages={3}
+          onPageChange={onPageChange}
+        />
+      </div>
     </>
   );
 };

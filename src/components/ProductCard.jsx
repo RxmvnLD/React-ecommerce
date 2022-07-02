@@ -5,27 +5,30 @@ import { FaCartPlus } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { axiosPost } from "../helpers/axiosInstance";
 import CartContext from "../context/CartContext";
+import { defaultImage } from "../config";
+import AuthContext from "../context/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 const ProductCard = ({ name, description, stock, price, image, id }) => {
-  const defaultImage =
-    "https://thumbs.dreamstime.com/b/corrupted-file-document-outline-icon-corrupted-file-document-outline-icon-linear-style-sign-mobile-concept-web-design-bad-116231507.jpg";
-
   const { cartDispatch } = useContext(CartContext);
+  const { state } = useContext(AuthContext);
+  const navigate = useNavigate();
   const addToCart = async () => {
     const body = { idProduct: id, amount: 1 };
-    try {
-      const res = await axiosPost("/cart/add", body);
-      console.log(res);
-      if (res) {
-        alert("producto agregado al carrito");
-        await cartDispatch({ type: "ADD", payload: res });
-        await cartDispatch({
-          type: "UPDATE_AMOUNT",
-          payload: res[res.length - 1].price * res[res.length - 1].amount,
-        });
+    if (state.success) {
+      try {
+        const res = await axiosPost("/cart/add", body);
+        console.log(res);
+        if (res) {
+          alert("producto agregado al carrito");
+          await cartDispatch({ type: "ADD", payload: res });
+        }
+      } catch (error) {
+        console.log(error);
       }
-    } catch (error) {
-      console.log(error);
+    } else {
+      alert("Por favor inicia sesion para agregar productos al carrito");
+      navigate("/account");
     }
   };
 
