@@ -7,6 +7,7 @@ import Button from "./Button";
 import Input from "./Input";
 import { Link } from "react-router-dom";
 import ErrorBox from "./ErrorBox";
+import { baseURL } from "../config";
 
 const Login = () => {
   const [loginError, setLoginError] = useState({
@@ -64,6 +65,12 @@ const Login = () => {
             Crear una cuenta
           </Link>
         </p>
+        <a href={`${baseURL}/auth/google`}>
+          <Button text="Iniciar sesión con Google" />
+        </a>
+        <a href={`${baseURL}/auth/facebook`}>
+          <Button text="Iniciar sesión con Facebook" />
+        </a>
       </MainContainer>
     </>
   );

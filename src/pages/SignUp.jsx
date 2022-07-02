@@ -7,6 +7,7 @@ import { axiosPost } from "../helpers/axiosInstance";
 import ErrorBox from "../components/ErrorBox";
 import { useNavigate } from "react-router-dom";
 import AuthContext from "../context/AuthContext";
+import { baseURL } from "../config";
 
 const url = "/auth/signup";
 const SignUp = () => {
@@ -61,6 +62,12 @@ const SignUp = () => {
                 })}
               <Button text="CREAR MI CUENTA" />
             </FormContainer>
+            <a href={`${baseURL}/auth/google`}>
+              <Button text="Registrate con Google" />
+            </a>
+            <a href={`${baseURL}/auth/facebook`}>
+              <Button text="Registrate con Facebook" />
+            </a>
           </MainContainer>
         </>
       )}
