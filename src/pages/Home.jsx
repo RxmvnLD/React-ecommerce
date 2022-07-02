@@ -1,13 +1,17 @@
 import React, { useState, useContext, useEffect } from "react";
-import AuthContext from "../context/AuthContext";
+//import AuthContext from "../context/AuthContext";
 import NavBar from "../components/NavBar";
 import ProductCard from "../components/ProductCard";
 import tw from "twin.macro";
 import { axiosGet } from "../helpers/axiosInstance";
-
+import CartContext from "../context/CartContext";
+import Loader from "../components/Loader";
 const Home = () => {
-  const { state } = useContext(AuthContext);
-  //console.log("logged in: ", state);
+  const { cartState } = useContext(CartContext);
+  useEffect(() => {
+    console.log("Cart", cartState);
+  }, [cartState]);
+
   const [products, setProducts] = useState([]),
     [loader, setLoader] = useState(true);
 
@@ -29,7 +33,7 @@ const Home = () => {
     <>
       <NavBar />
       {products.length === 0 ? (
-        loader && <h1>loader</h1>
+        loader && <Loader />
       ) : (
         <ProductsContainer>
           {products.map((product) => {
