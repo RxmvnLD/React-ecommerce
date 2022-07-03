@@ -9,7 +9,7 @@ export const cartInitialState = {
 export const cartReducer = (state, action) => {
   switch (action.type) {
     case TYPES.CART_UPDATE_AMOUNT:
-      return { ...state, total: action.payload };
+      return { ...state, total: state.total + action.payload };
 
     case TYPES.CART_ADD:
       return { ...state, cart: action.payload };

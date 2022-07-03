@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import NavBar from "../components/NavBar";
 import tw from "twin.macro";
 import ProductInCart, { Header } from "../components/ProductInCart";
@@ -13,6 +13,16 @@ import { useNavigate } from "react-router-dom";
 const ShoppingCart = () => {
   const navigate = useNavigate();
   const { cartState, cartDispatch } = useContext(CartContext);
+
+  const getTotalToPay = async () => {
+    const res = await axiosGet("/cart");
+    res.map((element) => {
+      cartDispatch({
+        type: "UPDATE_AMOUNT",
+        payload: element.price * element.amount,
+      });
+    });
+  };
   const handleClientSecret = async () => {
     try {
       const res = await axiosGet("/cart/pay");
@@ -27,6 +37,10 @@ const ShoppingCart = () => {
       console.log(error);
     }
   };
+
+  useEffect(() => {
+    getTotalToPay();
+  }, []);
 
   return (
     <>

@@ -88,7 +88,7 @@ const ProductDetails = () => {
         </DetailsContainer>
         <DetailsContainer>
           <DetailsOfProduct>
-            <h2 className="font-bold">Más artículos del vendedor:</h2>
+            <h2 className="font-bold">Articulos recomendados:</h2>
           </DetailsOfProduct>
         </DetailsContainer>
       </MainContainer>

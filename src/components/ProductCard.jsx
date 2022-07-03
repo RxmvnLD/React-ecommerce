@@ -22,6 +22,7 @@ const ProductCard = ({ name, description, stock, price, image, id }) => {
         if (res) {
           alert("producto agregado al carrito");
           await cartDispatch({ type: "ADD", payload: res });
+          //await cartDispatch({ type: "UPDATE_AMOUNT", payload: price });
         }
       } catch (error) {
         console.log(error);
