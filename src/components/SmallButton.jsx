@@ -1,8 +1,12 @@
 import React from "react";
 import tw from "twin.macro";
 
-const SmallButton = ({ onClick, text }) => {
-  return <CustomButton onClick={onClick}>{text}</CustomButton>;
+const SmallButton = ({ onClick, text, disabled }) => {
+  return (
+    <CustomButton onClick={onClick} disabled={disabled}>
+      {text}
+    </CustomButton>
+  );
 };
 
 const CustomButton = tw.button`

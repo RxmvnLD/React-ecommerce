@@ -20,13 +20,6 @@ const CartProvider = ({ children }) => {
         type: "GET",
         payload: res,
       });
-
-      await res.forEach((el) => {
-        cartDispatch({
-          type: "UPDATE_AMOUNT",
-          payload: el.price * el.amount,
-        });
-      });
     } catch (error) {
       console.log(error);
     }
@@ -37,7 +30,7 @@ const CartProvider = ({ children }) => {
   }, []);
 
   return (
-    <CartContext.Provider value={{ cartState, cartDispatch, getCart }}>
+    <CartContext.Provider value={{ cartState, cartDispatch }}>
       {children}
     </CartContext.Provider>
   );

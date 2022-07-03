@@ -18,14 +18,15 @@ export const Header = () => {
 const ProductInCart = ({ id, img, name, initialQuantity, price }) => {
   const [quantity, setQuantity] = useState(initialQuantity),
     [disabledState, setDisabledState] = useState(false);
-  const { cartDispatch, getCart } = useContext(CartContext);
+  const { cartDispatch } = useContext(CartContext);
 
   const changeQuantity = async () => {
     try {
-      await axiosPut("/cart/changeAmount", {
+      const res = await axiosPut("/cart/changeAmount", {
         idProduct: id,
         amount: quantity,
       });
+      await cartDispatch({ type: "ADD", payload: res });
     } catch (error) {
       console.log(error);
     }
@@ -33,9 +34,8 @@ const ProductInCart = ({ id, img, name, initialQuantity, price }) => {
 
   useEffect(() => {
     changeQuantity();
-    getCart();
-    quantity === 0 ? setDisabledState(true) : setDisabledState(false);
-  }, [quantity, changeQuantity]);
+    quantity === 1 ? setDisabledState(true) : setDisabledState(false);
+  }, [quantity]);
 
   const deleteFromCart = async () => {
     const body = {
@@ -46,7 +46,6 @@ const ProductInCart = ({ id, img, name, initialQuantity, price }) => {
       const res = await axiosDel("/cart/remove", body);
       await console.log(res);
       await cartDispatch({ type: "REMOVE", payload: res });
-      await getCart();
     } catch (error) {
       console.log(error);
     }
@@ -59,7 +58,7 @@ const ProductInCart = ({ id, img, name, initialQuantity, price }) => {
           <ProductImage src={img} />
         </div>
         <div className="flex flex-col justify-between">
-          <h2 className="font-bold">{name}</h2>
+          <h2 className="font-bold">{name.substring(0, 15)}...</h2>
           <p>Marca: Unknown</p>
           <h2>
             <u
@@ -78,6 +77,10 @@ const ProductInCart = ({ id, img, name, initialQuantity, price }) => {
             disabled={disabledState}
             onClick={() => {
               setQuantity(quantity - 1);
+              cartDispatch({
+                type: "UPDATE_AMOUNT",
+                payload: -price,
+              });
             }}
           />
 
@@ -86,6 +89,10 @@ const ProductInCart = ({ id, img, name, initialQuantity, price }) => {
             text="+"
             onClick={() => {
               setQuantity(quantity + 1);
+              cartDispatch({
+                type: "UPDATE_AMOUNT",
+                payload: price,
+              });
             }}
           />
         </div>
@@ -94,7 +101,7 @@ const ProductInCart = ({ id, img, name, initialQuantity, price }) => {
         <h2>{price}</h2>
       </div>
       <div>
-        <h2>{price * quantity}</h2>
+        <h2>{(price * quantity).toFixed(2)}</h2>
       </div>
     </ItemCard>
   );
