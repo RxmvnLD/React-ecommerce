@@ -6,7 +6,6 @@ import { useParams } from "react-router-dom";
 import CartContext from "../context/CartContext";
 import { axiosGet, axiosPost } from "../helpers/axiosInstance";
 import { defaultImage } from "../config";
-//import ProductCard from "../components/ProductCard";
 import AuthContext from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 
@@ -56,17 +55,6 @@ const ProductDetails = () => {
     }
   };
 
-  /*   const getRecomendations = async () => {
-    try {
-      const res = await axiosGet(`/products/${product.owner}?limit=3`);
-      await setRecomendations(res);
-    } catch (error) {}
-  };
-
-  useEffect(() => {
-    getRecomendations();
-  }, [product.owner]); */
-
   return (
     <>
       <NavBar />
@@ -101,20 +89,6 @@ const ProductDetails = () => {
         <DetailsContainer>
           <DetailsOfProduct>
             <h2 className="font-bold">Más artículos del vendedor:</h2>
-            {/* {recomendations.length > 0 &&
-              recomendations.map((product) => {
-                return (
-                  <ProductCard
-                    key={product._id}
-                    name={product.name}
-                    description={product.description.substring(0, 20)}
-                    stock={product.stock}
-                    price={[product.price]}
-                    image={product.images[0]}
-                    id={product._id}
-                  />
-                );
-              })} */}
           </DetailsOfProduct>
         </DetailsContainer>
       </MainContainer>
