@@ -8,11 +8,11 @@ import { Link } from "react-router-dom";
 const NavBar = () => {
   const [open, setOpen] = useState(false);
   const links = [
-    { name: "Categoria 1", link: "/" },
-    { name: "Categoria 2", link: "/" },
-    { name: "Categoria 3", link: "/" },
-    { name: "Categoria 4", link: "/" },
-    { name: "Categoria 5", link: "/" },
+    { name: "Electronicos", link: "/categories/62c0d64c362f97dd892cbf79" },
+    { name: "Hogar", link: "/categories/62ba13090a98147777f380c2" },
+    { name: "Deportes", link: "/categories/62c0de8383904599029d7a69" },
+    { name: "Jardín", link: "/categories/62c0e100eba77cb61693ebc6" },
+    { name: "Fotografía", link: "/categories/62ba0d30b96a7de3835aeebb" },
   ];
 
   return (

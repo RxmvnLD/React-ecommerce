@@ -4,22 +4,25 @@ import ProductCard from "../components/ProductCard";
 import tw from "twin.macro";
 import { axiosGet } from "../helpers/axiosInstance";
 import Loader from "../components/Loader";
+import { useParams } from "react-router-dom";
 import SmallButton from "../components/SmallButton";
 
 const Home = () => {
+  const { sellerID } = useParams();
+
   const [products, setProducts] = useState([]),
     [loader, setLoader] = useState(true),
     [actualPage, setActualPage] = useState(1);
-
   const previousPage = () => {
     return actualPage > 1 ? setActualPage(actualPage - 1) : null;
   };
 
   const nextPage = () => setActualPage(actualPage + 1);
-
   const getProducts = async () => {
     try {
-      const res = await axiosGet(`/products?page=${actualPage}&limit=8`),
+      const res = await axiosGet(
+          `/products/${sellerID}?page=${actualPage}&limit=8`
+        ),
         json = await res.data;
       await setProducts(json);
       setLoader(false);
@@ -28,8 +31,7 @@ const Home = () => {
   //console.log(products);
   useEffect(() => {
     getProducts();
-    console.log();
-  }, [actualPage]);
+  }, [sellerID, actualPage]);
 
   return (
     <>
@@ -68,3 +70,16 @@ grid
 grid-cols-2
 sm:grid-cols-4`;
 export default Home;
+
+/*
+electronics@seller.com - 62c0d64c362f97dd892cbf79
+
+sports@seller.com - 62c0de8383904599029d7a69
+
+outdoors@seller.com - 62c0e100eba77cb61693ebc6
+
+test@seller.com - 62ba0d30b96a7de3835aeebb
+
+2   
+
+*/

@@ -116,4 +116,5 @@ m-2
 `;
 
 const Description = tw.textarea`h-20 p-2 text-base border-2 border-blue-500 rounded w-full text-accent bg-secondary caret-blue-900`;
+
 export default NewProduct;

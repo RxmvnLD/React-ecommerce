@@ -6,6 +6,7 @@ import Button from "../components/Button";
 import { useNavigate } from "react-router-dom";
 import tw from "twin.macro";
 import { axiosGet } from "../helpers/axiosInstance";
+import { Link } from "react-router-dom";
 
 const Account = () => {
   const navigate = useNavigate();
@@ -34,7 +35,9 @@ const Account = () => {
           </Divider>
           <MainContainer>
             <Divider>
-              <Title2>Mis compras:</Title2>
+              <Link to="/newproduct">
+                <Title2>Mis compras:</Title2>
+              </Link>
               <p>No tienes compras</p>
             </Divider>
             <Divider>
