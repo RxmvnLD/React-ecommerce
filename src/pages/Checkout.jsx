@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import NavBar from "../components/NavBar";
 import tw from "twin.macro";
 import CartContext from "../context/CartContext";
@@ -16,9 +16,11 @@ const Checkout = () => {
   console.log(cartState);
   const clientSecret = cartState.secret;
 
-  if (clientSecret === "") {
-    navigate("/shoppingcart");
-  }
+  useEffect(() => {
+    if (clientSecret === "") {
+      navigate("/shoppingcart");
+    }
+  }, []);
 
   return (
     <>

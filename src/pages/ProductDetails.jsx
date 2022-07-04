@@ -5,25 +5,22 @@ import SmallButton from "../components/SmallButton";
 import { useParams } from "react-router-dom";
 import CartContext from "../context/CartContext";
 import { axiosGet, axiosPost } from "../helpers/axiosInstance";
-import { defaultImage } from "../config";
 import AuthContext from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
+import Carousel from "../components/Carousel";
 
 const ProductDetails = () => {
   const { cartDispatch } = useContext(CartContext);
   const { state } = useContext(AuthContext);
   const { id } = useParams();
   const [product, setProduct] = useState({}),
-    [loadingImage, setLoadingImage] = useState(true);
+    [images, setImages] = useState([]);
   const navigate = useNavigate();
   const getProduct = async () => {
     try {
       const res = await axiosGet(`/products/one/${id}`);
       await setProduct(res);
-      if (res.images[0] !== "") {
-        setLoadingImage(false);
-      }
-      console.log(res);
+      await setImages(res.images);
     } catch (error) {
       console.log(error);
     }
@@ -60,11 +57,7 @@ const ProductDetails = () => {
       <NavBar />
       <MainContainer>
         <ProductCarousel>
-          {loadingImage ? (
-            <img src={defaultImage} alt="Pic 1" />
-          ) : (
-            <img src={product.images[0]} alt="Pic 1" />
-          )}
+          <Carousel images={images} />
         </ProductCarousel>
         <DetailsContainer>
           <DetailsOfProduct>
@@ -107,7 +100,7 @@ justify-evenly
 `;
 
 const ProductCarousel = tw.section`
-w-2/5
+w-2/6
 bg-blue-50
 p-10
 text-base
