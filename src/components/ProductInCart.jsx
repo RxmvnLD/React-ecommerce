@@ -46,6 +46,10 @@ const ProductInCart = ({ id, img, name, initialQuantity, price }) => {
       const res = await axiosDel("/cart/remove", body);
       await console.log(res);
       await cartDispatch({ type: "REMOVE", payload: res });
+      await cartDispatch({
+        type: "UPDATE_AMOUNT",
+        payload: -price * quantity,
+      });
     } catch (error) {
       console.log(error);
     }
@@ -83,7 +87,6 @@ const ProductInCart = ({ id, img, name, initialQuantity, price }) => {
               });
             }}
           />
-
           <p>{quantity}</p>
           <SmallButton
             text="+"

@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import CartContext from "../context/CartContext";
-import Button from "../components/Button";
+import SmallButton from "../components/SmallButton";
 import {
   PaymentElement,
   useStripe,
@@ -33,7 +33,7 @@ const CheckoutForm = () => {
         <form onSubmit={handleSubmit}>
           <PaymentElement />
           <div className="flex content-center mt-5">
-            <Button text="Pagar" />
+            <SmallButton text="Pagar" />
           </div>
         </form>
       </FormContainer>

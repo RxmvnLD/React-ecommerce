@@ -9,7 +9,7 @@ import CartContext from "../context/CartContext";
 import { Link } from "react-router-dom";
 import { axiosGet } from "../helpers/axiosInstance";
 import { useNavigate } from "react-router-dom";
-
+import Checkout from "./Checkout";
 const ShoppingCart = () => {
   const navigate = useNavigate();
   const { cartState, cartDispatch } = useContext(CartContext);
@@ -17,7 +17,7 @@ const ShoppingCart = () => {
   const getTotalToPay = async () => {
     const res = await axiosGet("/cart");
     res.map((element) => {
-      cartDispatch({
+      return cartDispatch({
         type: "UPDATE_AMOUNT",
         payload: element.price * element.amount,
       });
@@ -94,12 +94,13 @@ const ShoppingCart = () => {
             <h3>Total</h3>
             <h3>${cartState.total.toFixed(2)}</h3>
           </HorizontalSection>
-
-          <Link to="/checkout">
-            <div className="flex content-center">
-              <Button text="Checkout" onClick={handleClientSecret} />
-            </div>
-          </Link>
+          <div className="flex content-center m-4">
+            <SmallButton
+              text="Proceder con el pago"
+              onClick={handleClientSecret}
+            />
+          </div>
+          <Checkout />
         </OrderSummary>
       </MainContainer>
     </>
